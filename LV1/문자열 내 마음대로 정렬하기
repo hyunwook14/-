@@ -2,8 +2,6 @@ import java.util.*;
 class Solution {
   public String[] solution(String[] strings, int n) {
       
-      String[] answers = new String[strings.length];
-      
       for(int i = 0; i < strings.length; i++){
           for(int j= i+1; j < strings.length; j++){
               if(strings[i].charAt(n) > strings[j].charAt(n)){
