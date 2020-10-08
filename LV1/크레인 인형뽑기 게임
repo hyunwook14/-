@@ -1,0 +1,31 @@
+class Solution {
+    public int solution(int[][] board, int[] moves) {
+        int answer = 0;
+        
+        int[] box = new int[board.length*board.length];
+        int idx = 0;
+        int pick;
+        for(int i =0; i < moves.length; i++){
+            pick = moves[i] -1;
+            //System.out.println(pick);
+            
+            for(int j=0; j<board.length; j++){
+               if(board[j][pick] != 0){
+                    
+                   box[idx++] = board[j][pick];
+                   board[j][pick] = 0;
+                   //System.out.println(idx);
+                   //System.out.print(box[idx-1]);   
+                   if( (idx -2 > -1) &&  (box[idx-2] == box[idx-1])){
+                       idx -= 2;
+                       answer += 2;
+                   }
+                   break;
+               }  
+            }
+            
+        }
+        
+        return answer;
+    }
+}
