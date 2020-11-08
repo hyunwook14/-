@@ -1,0 +1,16 @@
+select
+ b.h
+, nvl(a.count, 0)
+from
+(
+SELECT
+to_char(datetime, 'HH24') as hour, count(*) as count
+FROM animal_outs
+group by to_char(datetime, 'HH24')
+) a
+full outer JOIN ( SELECT LEVEL - 1 as h , 0 as hour
+ FROM DUAL
+ connect by LEVEL <25
+) b
+ON a.hour = b.h 
+order by b.h
